@@ -9,7 +9,7 @@ theme.loadSyntax = function ()
     StorageClass =   { fg = nord.nord9_gui }, -- static, register, volatile, etc.
     Structure =      { fg = nord.nord9_gui }, -- struct, union, enum, etc.
     Constant =       { fg = nord.nord4_gui }, -- any constant
-    String =         { fg = nord.nord14_gui, bg = nord.none, style= 'italic' }, -- Any string
+    String =         { fg = nord.nord14_gui, bg = nord.none }, -- Any string
     Character =      { fg = nord.nord14_gui }, -- any character constant: 'c', '\n'
     Number =         { fg = nord.nord15_gui }, -- a number constant: 5
     Boolean =        { fg = nord.nord9_gui }, -- a boolean constant: TRUE, false
@@ -56,7 +56,7 @@ theme.loadSyntax = function ()
   syntax.Keyword =    {fg = nord.nord9_gui} -- normal for, do, while, etc.
   syntax.Repeat =      {fg = nord.nord9_gui} -- normal any other keyword
   syntax.Function =    {fg = nord.nord8_gui}
-  syntax.Identifier =      {fg = nord.nord4_gui}; -- any variable name
+  syntax.Identifier =      {fg = nord.nord7_gui}; -- any variable name
 
   return syntax
 
@@ -73,10 +73,10 @@ theme.loadEditor = function ()
     Cursor =           { fg = nord.nord4_gui, bg = nord.none, style = 'reverse' }, -- the character under the cursor
     CursorIM =         { fg = nord.cursor, bg = nord.none, style = 'reverse' }, -- like Cursor, but used when in IME mode
     Directory =        { fg = nord.nord7_gui, bg = nord.none }, -- directory names (and other special names in listings)
-    DiffAdd =          { fg = nord.nord14_gui, bg = nord.none, style = 'reverse' }, -- diff mode: Added line
-    DiffChange =       { fg = nord.nord12_gui, bg = nord.none, style = 'reverse' }, --  diff mode: Changed line
-    DiffDelete =       { fg = nord.nord11_gui, bg = nord.none, style = 'reverse' }, -- diff mode: Deleted line
-    DiffText =         { fg = nord.nord15_gui, bg = nord.none, style = 'reverse' }, -- diff mode: Changed text within a changed line
+    DiffAdd =          { fg = nord.nord14_gui, bg = nord.nord1_gui }, -- diff mode: Added line
+    DiffChange =       { fg = nord.nord13_gui, bg = nord.nord1_gui }, --  diff mode: Changed line
+    DiffDelete =       { fg = nord.nord11_gui, bg = nord.nord1_gui }, -- diff mode: Deleted line
+    DiffText =         { fg = nord.nord15_gui, bg = nord.nord1_gui, style = 'reverse' }, -- diff mode: Changed text within a changed line
     EndOfBuffer =      { fg = nord.disabled },
     ErrorMsg =         { fg = nord.none },
     Folded =           { fg = nord.disabled, nord.none, style = 'italic' },
@@ -84,7 +84,7 @@ theme.loadEditor = function ()
     IncSearch =        { fg = nord.none, bg = nord.nord4_gui, style = 'reverse' },
     LineNr =           { fg = nord.line_numbers },
     CursorLineNr =     { fg = nord.accent },
-    MatchParen =       { fg = nord.nord15_gui, bg = nord.none, style = 'bold' },
+    MatchParen =       { fg = nord.nord8_gui, bg = nord.nord3_gui, style = 'reverse'},
     ModeMsg =          { fg = nord.accent },
     MoreMsg =          { fg = nord.accent },
     NonText =          { fg = nord.disabled },
@@ -131,7 +131,7 @@ theme.loadEditor = function ()
     -- dashboard
     DashboardShortCut = { fg = nord.nord7_gui },
     DashboardHeader =   { fg = nord.nord9_gui },
-    DashboardCenter =   { fg = nord.nord8_gui },
+    DashboardCenter =   { fg = nord.nord14_gui },
     DashboardFooter =   { fg = nord.nord14_gui, style = "italic" },
 
   }
@@ -185,29 +185,23 @@ theme.loadTreeSitter = function ()
     TSAnnotation =        { fg = nord.nord12_gui },    -- For C++/Dart attributes, annotations thatcan be attached to the code to denote some kind of meta information.
     TSCharacter=          { fg = nord.nord14_gui },    -- For characters.
     TSConstructor =       { fg = nord.nord9_gui }, -- For constructor calls and definitions: `=                                                                          { }` in Lua, and Java constructors.
-    TSConstant =          { fg = nord.nord13_gui },    -- For constants
+    TSConstant =          { fg = nord.nord9_gui, style = 'bold,italic' },     -- For constants
     TSFloat =             { fg = nord.nord15_gui },    -- For floats
     TSNumber =            { fg = nord.nord15_gui },    -- For all number
     TSString =            { fg = nord.nord14_gui },    -- For strings.
 
-    --TSAnnotation =      { fg = nord.nord11_gui },    -- For C++/Dart attributes, annotations that can be attached to the code to denote some kind of meta information.
     TSAttribute =         { fg = nord.nord15_gui },    -- (unstable) TODO: docs
     TSBoolean=            { fg = nord.nord9_gui },    -- For booleans.
-    --TSCharacter=        { fg = nord.nord12_gui },    -- For characters.
-    --TSConstructor =     { fg = nord.nord9_gui }, -- For constructor calls and definitions: `=                                                                          { }` in Lua, and Java constructors.
-    --TSConstant =        { fg = nord.nord15_gui },    -- For constants
     TSConstBuiltin =      { fg = nord.nord7_gui },    -- For constant that are built in the language: `nil` in Lua.
     TSConstMacro =        { fg = nord.nord7_gui },    -- For constants that are defined by macros: `NULL` in C.
     TSError =             { fg = nord.error },    -- For syntax/parser errors.
     TSException =         { fg = nord.nord15_gui },    -- For exception related keywords.
     TSField =             { fg = nord.gray }, -- For fields.
-    --TSFloat =           { fg = nord.nord11_gui },    -- For floats.
     TSFuncMacro =         { fg = nord.nord7_gui },    -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
     TSInclude =           { fg = nord.nord9_gui },    -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
     TSLabel =             { fg = nord.nord15_gui }, -- For labels: `label:` in C and `:label:` in Lua.
-    TSNamespace =         { fg = nord.nord4_gui},    -- For identifiers referring to modules and namespaces.
-    --TSNone =            { },    -- TODO: docs
-    --TSNumber =          { fg = nord.nord12_gui },    -- For all numbers
+    TSNamespace =         { fg = nord.nord4_gui },    -- For identifiers referring to modules and namespaces.
+    TSNone =              { fg = nord.nord8_gui },    -- TODO: docs
     TSOperator =          { fg = nord.nord9_gui }, -- For any operator: `+`, but also `->` and `*` in C.
     TSParameter =         { fg = nord.nord10_gui }, -- For parameters of a function.
     TSParameterReference= { fg = nord.nord10_gui },    -- For references to parameters of a function.
@@ -215,7 +209,6 @@ theme.loadTreeSitter = function ()
     TSPunctDelimiter =    { fg = nord.nord8_gui }, -- For delimiters ie: `.`
     TSPunctBracket =      { fg = nord.nord8_gui }, -- For brackets and parens.
     TSPunctSpecial =      { fg = nord.nord8_gui }, -- For special punctutation that does not fall in the catagories before.
-    --TSString =          { fg = nord.nord14_gui },    -- For strings.
     TSStringRegex =       { fg = nord.nord7_gui }, -- For regexes.
     TSStringEscape =      { fg = nord.disabled }, -- For escape characters within a string.
     TSSymbol =            { fg = nord.nord15_gui },    -- For identifiers referring to symbols or atoms.
@@ -313,7 +306,7 @@ theme.loadPlugins = function()
 
     -- GitGutter
     GitGutterAdd =    { fg = nord.nord14_gui }, -- diff mode: Added line |diff.txt|
-    GitGutterChange = { fg = nord.nord15_gui }, -- diff mode: Changed line |diff.txt|
+    GitGutterChange = { fg = nord.nord13_gui }, -- diff mode: Changed line |diff.txt|
     GitGutterDelete = { fg = nord.nord11_gui }, -- diff mode: Deleted line |diff.txt|
 
     -- GitSigns
@@ -337,18 +330,18 @@ theme.loadPlugins = function()
     TelescopeNormal =         { fg = nord.fg, bg = nord.float },
 
     -- NvimTree
-    NvimTreeRootFolder =        { fg = nord.nord7_gui, style = "bold" },
-    NvimTreeGitDirty =          { fg = nord.nord15_gui },
-    NvimTreeGitNew =            { fg = nord.nord14_gui },
+    NvimTreeRootFolder =        { fg = nord.nord9_gui },
+    NvimTreeGitDirty =          { fg = nord.nord13_gui },
+    NvimTreeGitNew =            { fg = nord.nord7_gui },
     NvimTreeImageFile =         { fg = nord.nord15_gui },
     NvimTreeExecFile =          { fg = nord.nord14_gui },
-    NvimTreeSpecialFile =       { fg = nord.nord9_gui , style = "underline" },
-    NvimTreeFolderName=         { fg = nord.nord10_gui },
+    NvimTreeSpecialFile =       { fg = nord.nord9_gui },
+    NvimTreeFolderName=         { fg = nord.nord9_gui },
     NvimTreeEmptyFolderName=    { fg = nord.disabled },
     NvimTreeFolderIcon=         { fg = nord.accent },
     NvimTreeIndentMarker =      { fg  = nord.disabled },
     LspDiagnosticsError =       { fg = nord.error },
-    LspDiagnosticsWarning =     { fg = nord.nord15_gui },
+    LspDiagnosticsWarning =     { fg = nord.nord11_gui },
     LspDiagnosticsInformation = { fg = nord.nord10_gui },
     LspDiagnosticsHint =        { fg = nord.nord9_gui },
 
