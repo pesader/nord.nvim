@@ -81,7 +81,7 @@ theme.loadEditor = function ()
     ErrorMsg =         { fg = nord.none },
     Folded =           { fg = nord.disabled, nord.none, style = 'italic' },
     FoldColumn =       { fg = nord.nord7_gui },
-    IncSearch =        { fg = nord.none, bg = nord.nord4_gui, style = 'reverse' },
+    IncSearch =        { fg = nord.bg, bg = nord.nord13_gui },
     LineNr =           { fg = nord.line_numbers },
     CursorLineNr =     { fg = nord.accent },
     MatchParen =       { fg = nord.nord8_gui, bg = nord.nord3_gui, style = 'reverse'},
@@ -330,16 +330,17 @@ theme.loadPlugins = function()
     TelescopeNormal =         { fg = nord.fg, bg = nord.float },
 
     -- NvimTree
-    NvimTreeRootFolder =        { fg = nord.nord9_gui },
+    NvimTreeRootFolder =        { fg = nord.nord7_gui },
     NvimTreeGitDirty =          { fg = nord.nord13_gui },
-    NvimTreeGitNew =            { fg = nord.nord7_gui },
-    NvimTreeImageFile =         { fg = nord.nord15_gui },
+    NvimTreeGitNew =            { fg = nord.nord14_gui },
+    NvimTreeImageFile =         { fg = nord.accent },
     NvimTreeExecFile =          { fg = nord.nord14_gui },
     NvimTreeSpecialFile =       { fg = nord.nord9_gui },
     NvimTreeFolderName=         { fg = nord.nord9_gui },
-    NvimTreeEmptyFolderName=    { fg = nord.disabled },
-    NvimTreeFolderIcon=         { fg = nord.accent },
+    NvimTreeEmptyFolderName=    { fg = nord.nord9_gui },
+    NvimTreeFolderIcon=         { fg = nord.nord9_gui },
     NvimTreeIndentMarker =      { fg  = nord.disabled },
+    NvimTreeWindowPicker=       { fg = nord.accent, bg = nord.nord10_gui },
     LspDiagnosticsError =       { fg = nord.error },
     LspDiagnosticsWarning =     { fg = nord.nord11_gui },
     LspDiagnosticsInformation = { fg = nord.nord10_gui },
@@ -384,6 +385,15 @@ theme.loadPlugins = function()
     Sneak =      { fg = nord.bg, bg = nord.accent },
     SneakScope = { bg = nord.selection },
 
+    -- Quickscope
+    QuickScopeSecondary = {fg = nord.nord11_gui},
+    QuickScopePrimary = {fg = nord.nord13_gui},
+
+    -- VemTabline
+    VemTablineNormal = {fg = nord.accent, bg = nord.nord1_gui},
+    VemTablineShown = {fg = nord.accent, bg = nord.nord1_gui},
+    VemTablineTabNormal = {fg = nord.accent, bg = nord.nord1_gui},
+
     -- Indent Blankline
     IndentBlanklineChar =        { fg = nord.nord3_gui },
     IndentBlanklineContextChar = { fg = nord.nord3_gui },
@@ -401,6 +411,9 @@ theme.loadPlugins = function()
     HopNextKey1 =  { fg = nord.nord8_gui, style = 'bold' },
     HopNextKey2 =  { fg = nord.nord3_gui_bright},
     HopUnmatched = { fg = nord.comments },
+
+    -- Coc
+    CocFloating = {guibg=nord.nord2_gui, guifg=nord.accent},
 
     -- Fern
     FernBranchText = { fg = nord.nord3_gui_bright},
