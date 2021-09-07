@@ -67,7 +67,7 @@ theme.loadEditor = function ()
     -- Editor highlight groups
 
   local editor = {
-    NormalFloat =      { fg = nord.fg, bg = nord.float }, -- normal text and background color
+    NormalFloat =      { guifg=nord.accent, guibg=nord.nord2_gui }, -- normal text and background color
     ColorColumn =      { fg = nord.none, bg = nord.nord1_gui }, --  used for the columns set with 'colorcolumn'
     Conceal =          { fg = nord.disabled }, -- placeholder characters substituted for concealed text (see 'conceallevel')
     Cursor =           { fg = nord.nord4_gui, bg = nord.none, style = 'reverse' }, -- the character under the cursor
@@ -76,15 +76,15 @@ theme.loadEditor = function ()
     DiffAdd =          { fg = nord.nord14_gui, bg = nord.nord1_gui }, -- diff mode: Added line
     DiffChange =       { fg = nord.nord13_gui, bg = nord.nord1_gui }, --  diff mode: Changed line
     DiffDelete =       { fg = nord.nord11_gui, bg = nord.nord1_gui }, -- diff mode: Deleted line
-    DiffText =         { fg = nord.nord15_gui, bg = nord.nord1_gui, style = 'reverse' }, -- diff mode: Changed text within a changed line
+    DiffText =         { fg = nord.nord0_gui, bg = nord.nord13_gui }, -- diff mode: Changed text within a changed line
     EndOfBuffer =      { fg = nord.disabled },
     ErrorMsg =         { fg = nord.none },
-    Folded =           { fg = nord.disabled, nord.none, style = 'italic' },
+    Folded =           { fg = nord.nord3_gui },
     FoldColumn =       { fg = nord.nord7_gui },
     IncSearch =        { fg = nord.bg, bg = nord.nord13_gui },
     LineNr =           { fg = nord.line_numbers },
     CursorLineNr =     { fg = nord.accent },
-    MatchParen =       { fg = nord.nord8_gui, bg = nord.nord3_gui, style = 'reverse'},
+    MatchParen =       { fg = nord.nord8_gui, bg = nord.nord3_gui },
     ModeMsg =          { fg = nord.accent },
     MoreMsg =          { fg = nord.accent },
     NonText =          { fg = nord.disabled },
@@ -94,7 +94,7 @@ theme.loadEditor = function ()
     PmenuThumb =       { fg = nord.fg, bg = nord.accent },
     Question =         { fg = nord.nord14_gui },
     QuickFixLine =     { fg = nord.highlight, nord.nord6_gui, style = 'reverse' },
-    qfLineNr =         { fg = nord.highlight, nord.nord6_gui, style = 'reverse' },
+    qfLineNr =         { fg = nord.nord3_gui_bright },
     Search =           { fg = nord.nord1_gui, bg = nord.nord6_gui, style = 'reverse' },
     SpecialKey =       { fg = nord.nord9_gui },
     SpellBad =         { fg = nord.nord11_gui, bg = nord.none, style = 'italic,undercurl' },
@@ -111,7 +111,7 @@ theme.loadEditor = function ()
     Title =            { fg = nord.nord14_gui, bg = nord.none, style = 'bold' },
     Visual =           { fg = nord.none, bg = nord.selection },
     VisualNOS =        { fg = nord.none, bg = nord.selection },
-    WarningMsg =       { fg = nord.nord15_gui },
+    WarningMsg =       { fg = nord.nord13_gui },
     WildMenu =         { fg = nord.nord12_gui, bg = nord.none, style = 'bold' },
     CursorColumn =     { fg = nord.none, bg = nord.active },
     CursorLine =       { fg = nord.none, bg = nord.cursorlinefg },
@@ -122,11 +122,11 @@ theme.loadEditor = function ()
     ReplacelMode =     { fg = nord.nord11_gui, bg = nord.none, style = 'reverse' },
     VisualMode =       { fg = nord.nord9_gui, bg = nord.none, style = 'reverse' },
     CommandMode =      { fg = nord.gray, bg = nord.none, style = 'reverse' },
-    Warnings =         { fg = nord.nord15_gui },
+    Warnings =         { fg = nord.nord13_gui },
 
     healthError =   { fg = nord.error },
     healthSuccess = { fg = nord.nord14_gui },
-    healthWarning = { fg = nord.nord15_gui },
+    healthWarning = { fg = nord.nord12_gui },
 
     -- dashboard
     DashboardShortCut = { fg = nord.nord7_gui },
@@ -139,22 +139,14 @@ theme.loadEditor = function ()
   -- Options:
 
   --Set transparent background
-  if vim.g.nord_disable_background then
-    editor.Normal =     { fg = nord.fg, bg = nord.none } -- normal text and background color
-    editor.SignColumn = { fg = nord.fg, bg = nord.none }
-  else
     editor.Normal =     { fg = nord.fg, bg = nord.bg } -- normal text and background color
     editor.SignColumn = { fg = nord.fg, bg = nord.bg }
-  end
 
   -- Remove window split borders
-  if vim.g.nord_borders then
     editor.VertSplit = { fg = nord.border }
-  else
-    editor.VertSplit = { fg = nord.bg }
-  end
 
   return editor
+
 end
 
 theme.loadTerminal = function ()
@@ -210,7 +202,7 @@ theme.loadTreeSitter = function ()
     TSPunctBracket =      { fg = nord.nord8_gui }, -- For brackets and parens.
     TSPunctSpecial =      { fg = nord.nord8_gui }, -- For special punctutation that does not fall in the catagories before.
     TSStringRegex =       { fg = nord.nord7_gui }, -- For regexes.
-    TSStringEscape =      { fg = nord.disabled }, -- For escape characters within a string.
+    TSStringEscape =      { fg = nord.nord13_gui }, -- For escape characters within a string.
     TSSymbol =            { fg = nord.nord15_gui },    -- For identifiers referring to symbols or atoms.
     TSType =              { fg = nord.nord9_gui},    -- For types.
     TSTypeBuiltin =       { fg = nord.nord9_gui},    -- For builtin types.
@@ -337,6 +329,7 @@ theme.loadPlugins = function()
     NvimTreeExecFile =          { fg = nord.nord14_gui },
     NvimTreeSpecialFile =       { fg = nord.nord9_gui },
     NvimTreeFolderName=         { fg = nord.nord9_gui },
+    NvimTreeOpenedFolderName =  { fg = nord.nord9_gui },
     NvimTreeEmptyFolderName=    { fg = nord.nord9_gui },
     NvimTreeFolderIcon=         { fg = nord.nord9_gui },
     NvimTreeIndentMarker =      { fg  = nord.disabled },
@@ -394,9 +387,14 @@ theme.loadPlugins = function()
     VemTablineShown = {fg = nord.accent, bg = nord.nord1_gui},
     VemTablineTabNormal = {fg = nord.accent, bg = nord.nord1_gui},
 
+    -- Tagbar
+    TagbarAccessPublic = { fg = nord.nord14_gui },
+    TagbarAccessProtected = { fg = nord.nord13_gui },
+    TagbarAccessPrivate = { fg = nord.nord11_gui },
+
     -- Indent Blankline
-    IndentBlanklineChar =        { fg = nord.nord3_gui },
-    IndentBlanklineContextChar = { fg = nord.nord3_gui },
+    IndentBlanklineChar =        { fg = nord.disabled },
+    IndentBlanklineContextChar = { fg = nord.nord3_gui_bright, style = "bold" },
 
     -- Illuminate
     illuminatedWord =    { bg = nord.cursorlinefg },
@@ -412,8 +410,36 @@ theme.loadPlugins = function()
     HopNextKey2 =  { fg = nord.nord3_gui_bright},
     HopUnmatched = { fg = nord.comments },
 
+    -- Signature
+    SignatureMarkText = { fg = nord.nord8_gui },
+
     -- Coc
-    CocFloating = {guibg=nord.nord2_gui, guifg=nord.accent},
+    CocFloating = { bg=nord.nord1_gui, fg=nord.accent },
+    CocWarningHighlight = { fg=nord.nord13_gui },
+    CocWarningSign = { fg = nord.nord13_gui },
+    CocErrorHighlight = {fg = nord.nord11_gui },
+    CocErrorSign = {fg = nord.nord11_gui },
+
+    -- Todo Comments
+    TodoBgFIX    = {bg = nord.nord11_gui , fg = nord.nord0_gui, style = 'bold'},
+    TodoFgFIX    = {fg = nord.nord11_gui},
+    TodoSignFIX  = {fg = nord.nord11_gui},
+    TodoBgHACK   = {bg = nord.nord12_gui , fg = nord.nord0_gui, style = 'bold'},
+    TodoFgHACK   = {fg = nord.nord12_gui},
+    TodoSignHACK = {fg = nord.nord12_gui},
+    TodoBgNOTE   = {bg = nord.nord9_gui , fg = nord.nord0_gui, style = 'bold'},
+    TodoFgNOTE   = {fg = nord.nord9_gui},
+    TodoSignNOTE = {fg = nord.nord9_gui},
+    TodoBgTODO   = {bg = nord.nord7_gui, fg = nord.nord0_gui, style = 'bold'},
+    TodoFgTODO   = {fg = nord.nord7_gui},
+    TodoSignTODO = {fg = nord.nord7_gui},
+    TodoBgPERF   = {bg = nord.nord15_gui , fg = nord.nord0_gui, style = 'bold'},
+    TodoFgPERF   = {fg = nord.nord15_gui},
+    TodoSignPERF = {fg = nord.nord15_gui},
+    TodoBgWARN   = {bg = nord.nord13_gui , fg = nord.nord0_gui, style = 'bold'},
+    TodoFgWARN   = {fg = nord.nord13_gui},
+    TodoSignWARN = {fg = nord.nord13_gui},
+
 
     -- Fern
     FernBranchText = { fg = nord.nord3_gui_bright},
@@ -421,17 +447,7 @@ theme.loadPlugins = function()
   -- Options:
 
   -- Disable nvim-tree background
-  if vim.g.nord_disable_background then
     plugins.NvimTreeNormal = { fg = nord.fg, bg = nord.none }
-  else
-    plugins.NvimTreeNormal = { fg = nord.fg, bg = nord.sidebar }
-  end
-
-  if vim.g.nord_enable_sidebar_background then
-    plugins.NvimTreeNormal = { fg = nord.fg, bg = nord.sidebar }
-  else
-    plugins.NvimTreeNormal = { fg = nord.fg, bg = nord.none }
-  end
 
   return plugins
 
